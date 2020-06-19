@@ -76,3 +76,22 @@ def customer_can_afford_pet(customer, pet)
         return false
     end
 end
+
+def sell_pet_to_customer(shop, pet, customer)
+    # If the pet is in the shop
+    if (pet != nil && find_pet_by_name(shop, pet[:name]) != nil)
+        # If the customer can afford the pet    
+        if (customer_can_afford_pet(customer, pet))
+            # Take pet out of the shop
+            remove_pet_by_name(shop, pet[:name])
+            # Give pet to the customer
+            add_pet_to_customer(customer, pet)
+            # Take cash from the customer
+            remove_customer_cash(customer, pet[:price])
+            # Give cash to the shop
+            add_or_remove_cash(shop, pet[:price])
+            # Increase the number of pets sold by 1
+            increase_pets_sold(shop, 1)
+        end
+    end
+end     
