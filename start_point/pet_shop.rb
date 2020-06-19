@@ -17,3 +17,7 @@ end
 def increase_pets_sold(shop, num_of_pets)
     shop[:admin][:pets_sold] += num_of_pets
 end
+
+def stock_count(shop)
+    return shop[:pets].length()
+end
